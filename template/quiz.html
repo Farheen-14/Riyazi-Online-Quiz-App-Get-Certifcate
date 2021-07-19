@@ -1,0 +1,275 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <title>MCQs</title>
+  <script type="text/javascript">
+    //function preback() {window.history.forward();}
+    function preback() { window.history.forward(); }
+    setTimeout("preback()", 0);
+    window.onunload = function () { null };
+    $("#btnn").hide()
+
+  </script>
+</head>
+
+<body>
+  <h1 class="headline">Let's Start the Quiz</h1>
+  <div class="timset">
+    <img src="{% static 'img/time.jpg' %}" alt="timer" style="height: 12vh;">
+    <h5 id="timer"></h5>
+  </div><br>
+
+  <div class="container">
+    {% for i in message %}
+    <div class="display">
+
+      <h5> Q.) {{i.question}} ?</h5><br>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option1">{{i.option1}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option2">{{i.option2}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option3">{{i.option3}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option4">{{i.option4}}
+        </label>
+      </div>
+      <button type="button" id="btnn" onclick="func1()" class="bton" value="Submit">Submit</button>
+    </div>
+
+    <h5 id="correctans">...</h5>
+
+    <div class="ans">
+      <h6 id="UserAnswer">.....</h6><br>
+      <input type="text" value="{{i.answer}}" id="trii" hidden>
+      <h6 class="sol" value="answer"> Correct Answer : {{i.answer}}</h6>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="next">
+    {% if message.has_other_pages %}
+    <div class="pagination">
+      {% if message.has_next %}
+      <a href="?page={{ message.next_page_number }}" id="btton"><button type="button"
+          class="btn btn-success">Next</button></a>
+      {% else %}
+      <a href="{% url 'test' %}" id="done"><button type="button" class="btn btn-outline-primary">Go-To-Next</button></a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+
+
+
+  <!-- added for scripting and this is jquery      -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+    //timer set
+    window.onload = function () {
+      var minute = 00;
+      var sec = 10;
+      setInterval(function () {
+        document.getElementById("timer").innerHTML = "You have " + sec + " Second";
+        sec--;
+        if (sec < 0) {
+          document.getElementById("timer").innerHTML = "OOPs! Time-Out!  Go-To-Next";
+          $(".form-check-input").attr("disabled", true)
+          $('#btton').fadeIn()
+          $('#done').fadeIn()
+        }
+      }, 1000);
+    }
+    //timer set closed
+    function func1() {
+      var e = document.getElementsByTagName("input");
+      var a = document.getElementById("trii");
+      var arr = []
+      for (i = 0; i <= e.length; i++) {
+        if (e[i].type == "radio") {
+          if (e[i].checked) {
+
+            document.getElementById("UserAnswer").innerHTML = "You Are Selected : " + e[i].value;
+            if (a.value == e[i].value) {
+              var final = document.getElementById("correctans").innerHTML = "Correct Answer";
+              arr.push(1); //there is no increments  
+              $(".form-check-input").attr("disabled", true)
+              $('#btton').fadeIn()
+              $('.ans').fadeIn()
+              $('#correctans').fadeIn()
+              $('#timer').fadeOut()
+              $('#done').fadeIn()
+
+
+              //for (var s = 0; s < final.length; s++) {
+            }
+            else {
+              var final = document.getElementById("correctans").innerHTML = "Wrong Answer";
+              $(".form-check-input").attr("disabled", true)
+              $('#btton').fadeIn()
+              $('.ans').fadeIn()
+              $('#correctans').fadeIn()
+              $('#timer').fadeOut() //this is for hidden the timer after clicking answer
+              $('#done').fadeIn()
+
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .timset {
+      color: white;
+      margin: 0% 30%;
+      padding: 0%;
+      text-align: center;
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    .form-check {
+      border: 2px solid rgb(6, 21, 92);
+      padding-bottom: 1%;
+      padding-top: 1%;
+      margin-bottom: 3%;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .form-check-label {
+      cursor: pointer;
+    }
+
+    .form-check-input {
+      cursor: pointer;
+    }
+
+    .form-check:hover {
+      background-color: rgb(7, 7, 80);
+      border: 1px solid rgb(6, 58, 92);
+      color: white;
+      transition: 0.4s;
+      border-radius: 25px;
+    }
+
+    .bton {
+      background-color: rgb(7, 7, 80);
+      color: white;
+      padding: 1%;
+      padding-left: 2%;
+      padding-right: 2%;
+      border-radius: 20px;
+      margin-bottom: 2%;
+    }
+
+    .btn.btn-success {
+      border-radius: 20px;
+    }
+
+    body {
+      background-color: black;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .headline {
+      background-image: url("{% static 'img/music.jpg' %}");
+      background-size: cover;
+      background-position: center fixed;
+      margin: 2% 0%;
+      text-align: center;
+      color: white;
+    }
+
+    .container {
+      padding: 0%;
+    }
+
+    .display {
+      background-color: white;
+      margin-bottom: 3%;
+      margin-left: 25%;
+      margin-right: 25%;
+      padding: 2%;
+      border-radius: 25px;
+    }
+
+    .next {
+      text-align: center;
+      padding-left: 46%;
+      margin: 2%;
+    }
+
+    .ans {
+      display: none;
+      background-color: white;
+      margin-left: 25%;
+      margin-right: 25%;
+      padding: 1%;
+      text-align: center;
+    }
+
+    #btton {
+      display: none;
+    }
+
+    .sol {
+      color: green;
+    }
+
+    #UserAnswer {
+      color: red;
+    }
+
+    #correctans {
+      display: none;
+      color: white;
+      text-align: center;
+      background-color: red;
+      padding: 0.8%;
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+  #done {
+    border-radius: 20px;
+    display: none;
+  }
+  .btn.btn-outline-primary{
+    background-color: rgb(7, 7, 80);
+border-radius: 20px;
+    color: white;
+  }
+  </style>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+{% extends 'navbar.html' %}
+{% load static %}
+<!DOCTYPE html>
+    {% block title %}
+    {% endblock title %}
+  {% block body %}
+
+   <div id="back">
+        <h1 id="head">Riyazi-Quiz : General Quiz</h1>
+    <div class="contain">
+        <h3><u>Be the part of Quiz and get the Certificate </u></h3>
+        <h4>" Participate in online quiz competitions open for students, working professionals in India and across the
+            globe"</h4>
+    </div>
+  
+<button type="button" class="btn btn-outline-primary" id="load" onclick="loadingmore()">Load-More</button>
+<button type="button" class="btn btn-outline-primary" id="load1" onclick="loadingless()">Load-Less</button>
+
+    
+    <div class="section">
+        <h5><u>All that you need to know about Riyazi-Quiz : General Quiz</u></h5>
+        <p>The COVID pandemic has confined the lives of many of us within the boundaries of the online medium.
+            We are organizing online event of fun-filled activities and some healthy competition,
+            where peeps from any age group can come in and participate. And at the end, it is all for a good
+            purpose...<br>
+            <b>"You can get a certificate from Riyazi-Quiz"</b>
+        </p>
+        <h5><u>About the Event: </u></h5>
+        <p>For all the quiz maniacs out there, Riyazi-Quiz gives you the platform to show off your quizzing skills. 
+            A live online general quiz competition with some exciting questions.
+            Also, certificates for all those who participate.</p>
+        <h5><u>Important Details: </u></h5>
+        <ul>
+            <li>Registration Fee: Rs. 500.</li>
+            <li>Quiz Start : After Form Submition.</li>
+            <li>Platform : Online Quiz.</li>
+            <li>Eligibility : The quiz is open for all.</li>
+            <li>Individual Participation.</li>
+            <li>Quiz master will share the detailed rules.</li>
+            <li>Quiz master decision will be final.</li> 
+            <li>Format MCQs types</li>
+            <li>All participants will get the certification(in.pdf format) of Participation.</li>
+            <li>Download Certifcate after completing your quiz.</li>     
+        </ul>
+<!-- if user login  -->
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'register' %}" id="btnn"><button type="button" class="btn btn-primary">Register-Now</button></a>
+   
+       
+    <style>
+ 
+    .lower,.note{
+        display: none;
+    }
+    </style>
+    {% endif %}
+
+    </div>
+</div>
+<!-- it will shown before login  -->
+<div id="notauth">
+    <h4 class="lower">You want to participate on Riyazi-Quiz??? Please Login for Registration</h4><br>
+    <div class="note">
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-danger">Sign-In</button></a>
+        <a href="{% url 'signup' %}"><button type="button" class="btn btn-outline-danger">Sign-Up</button></a><br><br>
+        <a href="{% url 'home' %}"><button type="button" class="btn btn-outline-warning">Back-to-Home</button></a>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+ function loadingmore(){
+     $(".section").fadeIn()
+     $("#load1").fadeIn()
+     $("#load").fadeOut()
+     $("#notauth").show()
+
+ }
+ function loadingless(){
+    $(".section").fadeOut()
+    $("#load").fadeIn()
+    $("#load1").fadeOut()
+    $("#notauth").show()
+}
+</script>
+<style>
+*{
+    margin: 0%;
+}
+body{
+    font-family: 'Dancing Script', cursive;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+#register{ 
+    text-align: center;
+}
+.section{
+    display: none;
+}
+.section b{
+    color: crimson;
+    background-color: yellow;
+    letter-spacing: 0.1rem; 
+}
+.section b:hover{
+  font-size: 1.3rem;  
+  letter-spacing: 0.1rem; 
+}
+.contain{
+    text-align: center;
+    background-image: url("{% static 'img/music.jpg' %}" );
+    background-size: cover ;
+    color: white;
+    margin-top: 5%;
+}
+.section{
+    text-align: left;
+    color: white;
+    margin: 1% 15%;
+    padding: 3%;
+    background-color: black;
+}
+
+#head{
+    letter-spacing: 0.3rem;
+    text-align: center;
+    color: white;
+    padding: 0.2%;
+    margin-bottom: 2%;
+    margin-top: 6%;
+}
+
+h5{
+    padding-bottom: 1.5%;
+    letter-spacing: 0.2rem;
+}
+h3{
+    padding: 1%;
+    letter-spacing: 0.2rem;
+   
+}
+h4{
+    padding-bottom: 2%;
+    letter-spacing: 0.2rem;
+
+}
+.section h5:hover{
+background-color: crimson;
+color: white;
+
+}
+p:hover{
+    color: crimson;
+    letter-spacing: 0.1rem;
+}
+p{
+ padding: 1% 0%;  
+ letter-spacing: 0.1rem;
+ 
+}
+ul{
+    padding-bottom: 2%;
+    letter-spacing: 0.1rem;
+
+
+}
+ul:hover{
+    color: crimson;
+}
+
+/*before login*/
+.lower{
+    background-color: yellow;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    padding: 0.1%;
+    text-align: center;
+}
+.note{
+margin-bottom: 3%;
+text-align: center;
+}
+
+#load{
+text-align: center;
+margin-top: 5%;
+margin-left: 46%;
+margin-bottom: 2%;
+border-radius: 20px;
+}
+#load1{
+    text-align: center;
+    margin-top: 5%;
+    margin-left: 46%;
+    border-radius: 20px;
+    display: none;
+    }
+#btnn{
+    margin-left: 44%;
+}
+#notauth{
+    display: none;
+}
+.note .btn{
+    border-radius: 20px;
+ 
+}
+.btn.btn-primary{
+ border-radius: 20px;
+}
+</style>
+{% endblock body %}
+
+</html>

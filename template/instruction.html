@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Quiz-Zone</title>
+</head>
+<body>
+<div class="giff">
+<h3>You payment is under process, please press Okay button for form submittion</h3>
+<button type="button" class="btn btn-outline-warning">Okay  </button><br><br>
+
+    <img src="{% static 'img/thank.gif' %}" frameborder="0" width="10%" height="10%"><br><br>
+
+{% for e in client %}
+     <h3>Now!!! {{e.First_name}},You Are Eligiable For Quiz Competition </h3><br>
+{% endfor %}
+</div>
+
+
+
+<div class="rules">
+    <h5><u>Instructions</u></h5><br><br>
+
+    <ul>
+        <li>Round : One round only</li>
+        <li>The number of questions asked will be 10 and must be attempted within a duration of 1.5 min</li>
+        <li>Time : 15sec for each question.</li>
+        <li>The questions asked in the quiz will be about the GK.</li>
+        <li>There is no negative marking for any incorrect questions.</li>
+        <li>There is no negative marking for any incorrect questions.</li>
+        <li>Format MCQ</li>
+        <li>Individual Participation</li>
+</ul>  
+</div><br>
+<div class="buttn">
+<a href="{% url 'quiz' %}" id="btnn"><button type="button" class="btn btn-outline-warning">Let's Play</button></a>
+</div>
+  
+<style>
+::-webkit-scrollbar {
+display: none;
+}  
+
+.giff{
+    text-align: center;
+    color: white;
+}
+body{
+ background-color: black;
+}  
+.rules{
+   color: white;
+   background-image: url("{% static 'img/music.jpg' %}");
+   background-size: cover;
+   background-position: right;
+   font-family: 'Dancing Script', cursive;
+   padding: 1% 30%;
+}
+
+.buttn{
+    text-align: center;
+}
+.btn.btn-outline-warning{
+    border-radius: 20px;
+}
+</style>
+</body>
+</html>

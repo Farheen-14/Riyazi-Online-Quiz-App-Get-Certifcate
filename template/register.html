@@ -1,0 +1,193 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Register</title>
+</head>
+
+<body>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+
+
+    <div class="form">
+        <form action="{% url 'register' %}" class="submition" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <center>
+                <h2>User Register</h2>
+                {% if messages %}
+                {% for msg in messages %}
+                <code style="background-color: yellow;">{{msg}}</code>
+                {% endfor %}
+                {% endif %}
+
+            </center>
+
+            <div class="details">
+                <div class="row">
+                    <div class="col">
+                        <label for="text" class="form-label">First Namel</label>
+                        <input type="text" class="form-control" placeholder="First name" aria-label="First name"
+                            name="First_name" required>
+                    </div>
+                    <div class="col">
+                        <label for="text" class="form-label">Last Namel</label>
+                        <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"
+                            name="Last_name" required>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <label for="email" class="form-label">Email Id</label>
+                        <input type="email" class="form-control" id="email" name="Email"
+                            placeholder="Enter Your Email_Id" required>
+                    </div>
+                    <div class="col">
+                        <label for="text" class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" placeholder="Mobile number" aria-label="Mobile Number"
+                            name="Mobile" required>
+                    </div>
+                </div><br>
+                <div class="col">
+                    <label for="inputAddress" class="form-label">Address 1</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="House No..Building Name"
+                        name="Address1" required>
+                </div><br>
+                <div class="col">
+                    <label for="inputAddress" class="form-label">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Road Name,Area,Colony"
+                        name="Address2" required>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="inputCity" class="form-label">City</label>
+                        <input type="text" class="form-control" id="inputCity" placeholder="City Name" name="City"
+                            required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputState" class="form-label">State</label>
+                        <select id="inputState" class="form-select" name="State" required>
+                            <option selected>Choose...</option>
+                            <option>Andhra-Pradesh</option>
+                            <option>Arunachal-Pradesh</option>
+                            <option>Assam </option>
+                            <option>Bihar </option>
+                            <option>Chhattisgarh </option>
+                            <option>Goa </option>
+                            <option>Gujarat </option>
+                            <option>Haryana </option>
+                            <option>Himachal-Pradesh</option>
+                            <option>Jharkhand</option>
+                            <option>Karnataka</option>
+                            <option>Kerala</option>
+                            <option>Madhya-Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Manipur</option>
+                            <option>Meghalaya</option>
+                            <option>Mizoram</option>
+                            <option>Nagaland</option>
+                            <option>Odisha</option>
+                            <option>Punjab</option>
+                            <option>Rajasthan</option>
+                            <option>Sikkim</option>
+                            <option>Tamil-Nadu</option>
+                            <option>Telangana</option>
+                            <option>Tripura</option>
+                            <option>Uttar-Pradesh</option>
+                            <option>Uttarakhand</option>
+                            <option>West-Bengal</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputZip" class="form-label">Pincode</label>
+                        <input type="text" class="form-control" id="inputZip" placeholder="Enter Pincode" name="Pincode"
+                            required>
+                    </div>
+                </div><br>
+
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="formFileSm" class="form-label">Choose Image (.jpeg, .jpg, .png)</label>
+                        <input class="form-control" type="file" id="formFile" name="picture" required>
+                    </div>
+                </div><br>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                        <label class="form-check-label" for="gridCheck">
+                            Check me out
+                        </label>
+                    </div>
+                </div><br>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Proceed for Payment</button><br><br>
+                </div>
+        </form>
+    </div>
+    <div class="backbtn">
+        <a href="{% url 'about' %}"><button type="button" class="btn btn-outline-warning">Back-to-Home</button></a>
+    </div>
+
+
+    <style>
+        body {
+            background-image: url("{% static 'img/music.jpg' %}");
+            background-size: cover;
+            background-position: center fixed;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .form {
+            margin-left: 25%;
+            margin-right: 25%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+        }
+
+        .submition {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 5%;
+            color: white;
+        }
+
+        .details {
+            margin-top: 5%;
+        }
+
+        .backbtn {
+            text-align: center;
+            margin-top: 3%;
+            font-family: 'Dancing Script', cursive;
+        }
+        .btn.btn-primary,.btn.btn-outline-warning{
+            border-radius: 20px;
+        }
+    </style>
+</body>
+
+</html>

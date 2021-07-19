@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+ <div class="backgrnd">
+      <section>
+      <div class="container-fluid p-0">
+          <!-- navbar for without Sign-In user  -->
+<!-- before login  -->
+  <div class="navbar">      
+    <a class="navbar-brand" href="/home" id="logo"><b><span>R</span>iyazi<sup><span>Q</span>uiz</sup></b></a>
+    <ul class="items">
+      <li class="item"><a href="/home">Home</a> </li>
+      <li class="item"><a href="/about">About</a></li>
+    </ul>
+  </div>
+ <!-- before login ending -->
+ 
+        <!-- <img src="{% static 'img/music.jpg' %}" alt="color" class="backgrnd"> -->
+        <div class="right">
+          <video src="{% static 'img/particles.mp4' %}" muted="" autoplay=""></video>
+          <h1><span>W</span>elcome <span>To</span> My <span>Kin</span>gdom</h1>
+        </div>
+        <div class="btnn">
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-danger">Sign-In</button></a>
+          <a href="{% url 'signup' %}"><button type="button" class="btn btn-danger">Sign-Up</button></a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <style>
+    * {
+      padding: 0%;
+      margin: 0%;
+    }
+    ::-webkit-scrollbar{
+      display: none;
+    }
+.btn.btn-danger{
+  border-radius: 20px;
+}
+    .backgrnd {
+      background-image: url("{% static 'img/music.jpg' %}" );
+      background-size: cover;
+      background-position: center fixed;
+      height: 100vh;
+    }
+
+
+/*navbar for without signin user before login*/
+  
+   
+#logo{
+  color: white;
+  font-size: 2rem;
+  margin-left: 1%;
+  font-family: 'Dancing Script', cursive;
+
+}
+span{
+    color: crimson;
+}
+  .navbar{
+      padding-top: 0.7rem;
+             }
+      
+    .items {
+      list-style-type: none;
+      width: 18%;
+      margin-left: auto;
+      padding: 0px ;
+      height: 0px;
+      background-color: transparent;
+    }
+
+
+    .item {
+      display: inline;
+      letter-spacing: 0.3rem;
+      padding: 4%;
+      margin: 3%;
+      font-size: 1.2rem;    
+      font-family: 'Dancing Script', cursive;
+      border-radius: 20px;
+    }
+    .item:hover{
+      background-color: white;
+      color: black;
+    }
+     
+
+    .header{
+      background-color:transparent;
+
+    }
+    
+
+
+    
+    /*body section*/
+    img {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .right {
+      position: absolute;
+      top: 40%;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      letter-spacing: 0.4rem;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .btnn {
+      position: absolute;
+      top: 55%;
+      width: 100%;
+      text-align: center;
+      margin: 1%;
+      font-family: 'Dancing Script', cursive;
+      border-radius: 20px;
+
+    }
+
+    .right h1 {
+      position: relative;
+      margin: 20px 0px 0px;
+      font-size: 3.7rem;
+      color: floralwhite;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    span {
+      color: crimson;
+    }
+
+    .right h1::before {
+      content: '';
+      position: absolute;
+      right: 50%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, crimson 1%, transparent 100%);
+      animation: animate 3s linear backwards;
+    }
+
+
+    video {
+      position: absolute;
+      top: 0%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: screen;
+
+    }
+
+  
+
+    @keyframes animate {
+      0% {
+        left: 100%
+      }
+
+      100% {
+        left: 0%
+      }
+    }
+
+  </style>
+
+
+</body>
+
+</html>

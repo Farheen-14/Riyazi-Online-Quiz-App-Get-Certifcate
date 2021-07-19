@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+
+<body>
+    <div class="payment">
+        <form action="{% url 'payment' %}" class="submition" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Registration Fee Rs.500</h1>
+
+            <h2>Please Pay With Razorpay for form submition.</h2>
+            <script src="https://checkout.razorpay.com/v1/checkout.js" data-key="rzp_test_k4dKLS5hNZx8t0"
+                data-amount="50000" data-currency="INR" data-order_id="{{payment.id}}"
+                data-buttontext="Pay-Now" data-name="Riyazi-Quiz"
+                data-description="Registarion fee is fixed" data-image="{% static 'img/quizlogo.png' %}"
+                data-prefill.name="RQ" data-prefill.email="Enter Your Email" data-theme.color="#130580">
+                </script>
+        </form>
+    </div>
+    <div class="backbtn">
+        <a href="{% url 'about' %}"><button type="button" class="btn btn-outline-warning" id="bton">Back-to-Home</button></a>
+    </div>
+    <script>
+        
+    </script>
+    <style>
+        .payment {
+            background-image: url("{% static 'img/music.jpg' %}");
+            background-size: cover;
+            background-position: right;
+
+            font-family: 'Dancing Script', cursive;
+            color: white;
+            text-align: center;
+            margin-top: 15%;
+            padding-top: 1%;
+            padding-bottom: 2%;
+        }
+        .success{
+            cursor: pointer;
+        }
+        body {
+            background-color: black;
+            padding: 0%;
+            margin: 0%;
+
+        }
+
+        .backbtn {
+            text-align: center;
+            margin-top: 7%;
+            font-family: 'Dancing Script', cursive;
+        }
+        .razorpay-payment-button{
+            padding: 0.6%;
+            background-color: transparent;
+            border: 2px solid white;
+            font-family: 'Dancing Script', cursive;
+            color: white;
+        }
+        .razorpay-payment-button:hover{
+            background-color: white;
+            color: black;
+        }
+        #bton{
+            border: 2px solid yellow;
+            background-color: transparent;
+            color: yellow;
+            padding: 0.6%;
+            font-family: 'Dancing Script', cursive;
+
+        }
+        #bton:hover{
+            background-color: yellow;
+            color: black;
+        }
+    </style>
+</body>
+
+</html>

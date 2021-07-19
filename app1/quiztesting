@@ -1,0 +1,351 @@
+testing.html code 
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <title>MCQs</title>
+</head>
+
+<body>
+  <h1>Let's Start the Quiz</h1>
+
+<div class="container">
+
+      {% for i in message %}
+      <div class="display">
+
+      <h5>{{i.id}} ) {{i.question}} ?</h5>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio">{{i.option1}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio">{{i.option2}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio">{{i.option3}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" name="optradio">{{i.option4}}
+        </label>
+      </div>
+      <code>Correct Answer is : {{i.answer}}</code> <br>
+      <button type="button" class="btn btn-primary">Submit</button>
+    </div>
+
+      {% endfor %}
+
+  </div>
+
+
+<style>
+.container{
+border: 2px solid red;
+   }
+
+.display{
+  border: 2px solid blue;
+  margin: 2%;
+  padding: 2%;
+}
+ </style> 
+</body>
+
+</html>
+
+pagination concept & how's its work.....
+
+****Pagination with Function-Based Views****
+views.py
+
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+def index(request):
+    user_list = User.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(user_list, 10)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
+    return render(request, 'core/user_list.html', { 'users': users })
+
+
+--------in user_list.html--------
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>First name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+****Same page****
+{% if users.has_other_pages %}
+  <ul class="pagination">
+    {% if users.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+      <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+...testing.html.. page backup-coding.....
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <title>MCQs</title>
+</head>
+
+<body>
+  <h1 class="headline">Let's Start the Quiz</h1>
+
+  <div class="container">
+
+    {% for i in message %}
+    <div class="display">
+
+      <h5>{{i.id}} ) {{i.question}} ?</h5><br>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option1">{{i.option1}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option2">{{i.option2}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option3">{{i.option3}}
+        </label>
+      </div>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input type="radio" class="form-check-input" id="radiobttn" name="optradio" value="Option4">{{i.option4}}
+        </label>
+      </div><br>
+      <button type="button" id="btnn" onclick="func1()" class="btn btn-primary" value="Submit">Submit</button>
+    </div>
+
+    <div class="ans">
+      <h6 id="UserAnswer">.....</h6><br>
+      <input type="text" value="{{i.answer}}" id="trii" hidden>
+      <h6 class="sol" value="answer"> Correct Answer : {{i.answer}}</h6>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="next">
+    {% if message.has_other_pages %}
+    <div class="pagination">
+      {% if message.has_next %}
+      <a href="?page={{ message.next_page_number }}" id="btton"><button type="button"
+          class="btn btn-success">Next</button></a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- added for scripting and this is jquery      -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+
+    function func1() {
+      var e = document.getElementsByTagName("input");
+      var a = document.getElementById("trii");
+      for (i = 0; i <= e.length; i++) {
+        if (e[i].type == "radio") {
+          if (e[i].checked) {
+            document.getElementById("UserAnswer").innerHTML = "You Are Selected : " + e[i].value;
+            if (a.value == e[i].value) {
+              window.alert("Correct Answer");
+              $(".form-check-input").attr("disabled", true)
+              $('#btton').fadeIn()
+              $('.ans').fadeIn()
+            }
+            else {
+              window.alert("Wrong Answer");
+              $(".form-check-input").attr("disabled", true)
+              $('#btton').fadeIn()
+              $('.ans').fadeIn()
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      background-color: black;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    .headline {
+      background-image: url("{% static 'img/music.jpg' %}");
+      background-size: cover;
+      background-position: center fixed;
+      margin: 4% 0%;
+      text-align: center;
+      color: white;
+    }
+
+    .container {
+      padding: 0%;
+    }
+
+    .display {
+      background-color: white;
+      margin-bottom: 3%;
+      margin-left: 25%;
+      margin-right: 25%;
+      padding: 2%;
+    }
+
+    .next {
+      text-align: center;
+      padding-left: 46%;
+      margin: 2%;
+    }
+
+    .ans {
+      display: none;
+      background-color: white;
+      margin-left: 25%;
+      margin-right: 25%;
+      padding: 1%;
+      text-align: center;
+    }
+
+    #btton {
+      display: none;
+    }
+
+    .sol {
+      color: green;
+    }
+
+    #UserAnswer {
+      color: red;
+    }
+  </style>
+</body>
+
+</html>
+
+
+timer.html
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="timset">
+<h2 id="timer"></h2>
+</div>
+  <script>
+    window.onload = function () {
+      var minute = 00;
+      var sec = 15;
+      setInterval(function () {
+        document.getElementById("timer").innerHTML = minute + " : " + sec;
+        sec--;
+        if (sec < 0) {
+          document.getElementById("timer").innerHTML = "Time-Out"
+        } 
+      }, 1000);
+    }
+  </script>
+  <style>
+    .timset{
+      background-color: black;
+      color: white;
+      border: 2px solid blue;
+      margin: 0% 43%;
+      padding: 0%;
+      text-align: center;
+    }
+  </style>
+</body>
+
+</html>

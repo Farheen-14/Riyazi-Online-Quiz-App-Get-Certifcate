@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title> 
+    {% block title %}
+    {% endblock title %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  
+</head>
+<body style="background-color: black;">
+    <header>
+
+        <div class="navbar">
+          <a class="navbar-brand" href="/home" id="logo"><b><span>R</span>iyazi<sup><span>Q</span>uiz</sup></b> </a>
+          <ul class="items">
+          {% comment %} applocable for all signin  {% endcomment %}
+            {% if user.is_authenticated %}
+
+            <li id="user1" class="item"><b>Hello,{{user.first_name}}</b></li>
+            <li class="item"><a href="/about">About</a></li>
+            <li class="item"><a href="/register">Register-Now</a></li>
+            <li class="item"><a href="/">Contact-Me</a></li>
+            <li class="item"><a href="/instruction">Eligiable</a></li>
+            <li class="item"><a href="/logout">Logout</a></li>
+            <li class="item" id="admin"><a href="/login">Admin-Access</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        {% block header %}
+        {% endblock header %}
+      </header>
+      {% block body %}
+      {% endblock body %}
+<style>
+#user1{
+  color: white;
+  background-color: rgb(28, 91, 228);
+  border-radius: 0%;
+  padding: 1%;
+  border-radius: 20px;
+}
+    * {
+        padding: 0%;
+        margin: 0%;
+      }
+      ::-webkit-scrollbar{
+        display: none;
+      }
+
+{% comment %} nabvar  {% endcomment %}
+  #logo{
+    color: white;
+    font-size: 2rem;
+    margin-left: 1%;
+    font-family: 'Dancing Script', cursive;
+  }
+  span{
+      color: crimson;
+  }
+    .navbar{
+        padding-top: .7rem;
+}
+        
+      .items {
+        list-style-type: none;
+        width: 70%;
+        margin-left: auto;
+        padding: 0px ;
+        height: 0px;
+        background-color: transparent;
+      }
+  
+      .item {
+        background-color: black;
+        display: inline;
+        letter-spacing: 0.3rem;
+        padding: 1%;
+        margin: 1%;
+        font-size: 1rem;    
+        font-family: 'Dancing Script', cursive;
+        color: white;
+
+      }
+  
+  
+      .header{
+        background-color:transparent;
+  
+      }
+
+  .item:hover{
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  }
+  #admin{
+    border: 2px solid rgb(28, 91, 228);
+    border-radius: 20px;
+
+  }
+</style>
+</body>
+</html>

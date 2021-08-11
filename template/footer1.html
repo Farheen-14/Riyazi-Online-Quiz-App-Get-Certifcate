@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+    <title>footer</title>
+
+</head>
+
+<body>
+    <div class="footer">
+<h2>Contact-Me</h2>
+      <div class="form">
+            <form action="{% url 'footer1' %}" class="submition" method="POST">
+            {% csrf_token %}
+            <input type="text" class="form-control" id="enqtxt" name="user_mail" placeholder="Email_Id" required>
+            <input type="text" class="form-control" id="enqtxt" name="user_message" placeholder="Message" required> 
+            <button type="submit" class="enq"  onclick="confirmation()">Submit </button>
+            </form>
+        </div>
+
+        <div id="second">  
+          <a id="icon" href="https://www.facebook.com/" class="fa fa-facebook"></a>
+          <a id="icon" href="https://mail.google.com/" class="fa fa-google"></a>
+          <a id="icon" href="https://web.whatsapp.com/" class="fa fa-whatsapp"></a>
+          <a id="icon" href="https://www.instagram.com/" class="fa fa-instagram"></a>
+          <a id="icon" href="https://in.linkedin.com/" class="fa fa-linkedin"></a>  <br>
+          <code>Copyright @ 2021 Riyazi-Quiz. All Rights Reserved.</code>
+         </div>  
+
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+ function confirmation(){
+  alert("Thanks! Your Enquiry is Successfully Sent to Admin");
+}
+</script>
+    <style>
+      ::-webkit-scrollbar{
+        display: none;
+    }
+ .form{
+   padding: 1% 0%;
+   margin: 0% 30%;
+ }
+
+ #enqtxt{
+   background-color: transparent;
+   color: white;
+   font-family: 'Times New Roman', Times, serif;
+   margin: 1%;
+   border: 2px solid rgb(53, 52, 52);
+
+  }
+ .enq{
+  background-color: transparent;
+  color: rgb(209, 197, 197);
+   padding: 0.7%;
+   border: 2px solid rgb(53, 52, 52);
+   border-radius: 5px;
+   cursor: pointer;
+   font-family: 'Times New Roman', Times, serif;
+
+ }
+ ::-webkit-scrollbar {
+  display: none;
+}
+ .footer {
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgb(32, 30, 30);
+            letter-spacing: 0.4rem;
+            color: white;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 1% 0%;
+            padding-bottom: 1%;
+            position: initial;            
+        }
+        #icon{
+            padding: 0.9rem;
+            margin-left: 1rem;
+            margin-bottom: 0.9rem;
+        }
+      
+            .fa {
+                padding: 10px;
+                font-size: 18px;
+                width: 50px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 50%;
+              }
+          
+         .fa:hover {
+            opacity: 0.7;
+          }
+                  
+          .fa-facebook {
+            background: #3B5998;
+            color: rgb(255, 255, 255);
+          }
+          .fa-whatsapp {
+            background: #108b0c;
+            color: white;
+          }
+          .fa-google {
+            background: #dd4b39;
+            color: white;
+          }
+          .fa-linkedin {
+            background: #007bb5;
+            color: white;
+          }
+          
+          .fa-instagram {
+            background: #800862;
+            color: white;
+          }
+          
+          @media screen and (max-width: 910px) {
+            #enqtxt{
+              font-size: 0.8rem;
+            }
+            .enq{
+            margin-top: 2%;
+            font-size: 0.9rem;
+            padding: 2%;
+            }
+            #icon{
+              padding: 0.7rem;
+              margin-left: 1rem;
+              margin-bottom: 0.9rem;
+          }
+          h2{
+            font-size: 1.3rem;
+          }
+          code{
+            font-size: 0.7rem;
+            letter-spacing: 0.4rem;
+          }
+        
+              .fa {
+                  padding: 10px;
+                  font-size: 14px;
+                  width: 40px;
+                  text-align: center;
+                  text-decoration: none;
+                  border-radius: 50%;
+                }
+          } 
+        @media screen and (max-width: 750px) {
+          #enqtxt{
+            font-size: 0.8rem;
+          }
+          .enq{
+          margin-top: 2%;
+          font-size: 0.9rem;
+          padding: 2%;
+          }
+          #icon{
+            padding: 0.7rem;
+            margin-left: 1rem;
+            margin-bottom: 0.9rem;
+        }
+        h2{
+          font-size: 1.3rem;
+        }
+        code{
+          font-size: 0.7rem;
+          letter-spacing: 0.3rem;
+        }
+      
+            .fa {
+                padding: 10px;
+                font-size: 14px;
+                width: 40px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 50%;
+              }
+         
+        }
+        @media screen and (max-width: 550px) {
+          #enqtxt{
+            font-size: 0.7rem;
+          }
+          .enq{
+          margin-top: 2%;
+          font-size: 0.7rem;
+          padding: 1.3%;
+          }
+          #icon{
+            margin-top: 1%;
+            padding: 0.6rem;
+            margin-left: 1rem;
+            margin-bottom: 0.9rem;
+        }
+        h2{
+          font-size: 1.2rem;
+        }
+        code{
+          font-size: 0.5rem;
+          letter-spacing: 0.2rem;
+        }
+      
+            .fa {
+                padding: 10px;
+                font-size: 0.9rem;
+                width: 35px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 50%;
+              }
+        }
+        @media screen and (max-width: 400px) {
+          #enqtxt{
+            font-size: 0.7rem;
+            padding: 0.7%;
+          }
+          .enq{
+          margin-top: 2%;
+          font-size: 0.6rem;
+          padding: 1.3%;
+          }
+          #icon{
+            margin-top: 1%;
+            padding: 0.6rem;
+            margin-left: 0.1rem;
+            margin-bottom: 0.9rem;
+        }
+        h2{
+          font-size: 0.8rem;
+        }
+        code{
+          font-size: 0.4rem;
+          letter-spacing: 0.1rem;
+        }
+      
+            .fa {
+                padding: 10px;
+                font-size: 0.8rem;
+                width: 35px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 50%;
+              }
+        }
+    </style>
+</body>
+
+</html>

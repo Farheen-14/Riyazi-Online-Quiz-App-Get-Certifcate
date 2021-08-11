@@ -70,8 +70,9 @@
                 display: none;
             }
             .error{
-                background-color: red;
-                color: white;
+                background-color: yellow;
+                color: black;
+                border-radius: 20px;
                 padding: 1%;
             }
             #logg {
@@ -115,6 +116,70 @@
             .btn.btn-outline-warning{
                 border-radius: 20px;
             }
+        @media screen and (max-width: 900px) {
+         #heading{
+             font-size: 1.7rem;
+         } 
+         .form-control,.btn.btn-primary,.btn.btn-outline-warning, a{
+             font-size: 0.8rem;
+         }
+         #logg {
+            margin-left: 15%;
+            margin-right: 15%;
+            margin-top: 20%;
+       }
+       .error{
+        font-size: 0.8rem;
+    }  
+        }
+        @media screen and (max-width: 750px) {
+            #heading{
+                font-size: 1.5rem;
+            } 
+            .form-control,.btn.btn-primary,.btn.btn-outline-warning, a{
+                font-size: 0.7rem;
+            }  
+            #logg {
+                margin-left: 15%;
+                margin-right: 15%;
+                margin-top: 25%;
+           }
+           .error{
+               font-size: 0.7rem;
+           }
+        }
+        @media screen and (max-width: 470px) {
+            #heading{
+                font-size: 1.3rem;
+            } 
+            .form-control,.btn.btn-primary,.btn.btn-outline-warning, a{
+                font-size: 0.6rem;
+            }  
+            #logg {
+                margin-left: 10%;
+                margin-right: 10%;
+                margin-top: 40%;
+           }
+           .error{
+            font-size: 0.7rem;
+        }
+        }
+        @media screen and (max-width: 350px) {
+            #heading{
+                font-size: 1.3rem;
+            } 
+            .form-control,.btn.btn-primary,.btn.btn-outline-warning, a{
+                font-size: 0.6rem;
+            }  
+            #logg {
+                margin-left: 10%;
+                margin-right: 10%;
+                margin-top: 50%;
+           }
+           .error{
+            font-size: 0.6rem;
+        }
+        }
         </style>
     </body>
 

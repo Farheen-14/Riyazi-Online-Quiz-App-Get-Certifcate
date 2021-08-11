@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>certificate</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="contain">
+      <h1>CERTIFICATE </h1>
+      <h5>OF PARTICIPATION</h5>
+      <h4>THIS CERTIFICATE IS AWARDED TO</h4>
+      <img src='{{data.picture.path}}' height="200px" alt="user_image" id="image">
+      <h3>{{data.First_name}} {{data.Last_name}}</h3>
+      <p id="one">has activity participate in an Online Riyazi-Quiz Competition </p>
+      <p id="two">organized by www.Riyazi-Quiz held with score 100%
+      <p>
+      <p id="three">we appriciate your efforts.</p>
+      <code>This is a certificate from Riyazi-Quiz</code>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+
+
+  <style>
+    @page {
+      size: a4 landscape;
+
+      top: 60pt;
+      bottom: 60pt;
+
+
+      /* for debugging the layout */
+
+    }
+
+    h1 {
+      font-family: Arial, Helvetica, sans-serif
+    }
+
+    h1 {
+      background-color: blue;
+    }
+
+    h1 {
+      padding-top: 0.5rem;
+      letter-spacing: 0.5rem;
+      font-size: 4rem;
+      padding-right: 5rem;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    h5 {
+      font-size: 2.3rem;
+      letter-spacing: 0.3rem;
+      padding-right: 4.5rem;
+    }
+
+    h4 {
+      font-family: cursive;
+      font-size: 2rem;
+      letter-spacing: 0.2rem;
+      padding-right: 5rem;
+    }
+
+    h3 {
+      font-size: 2rem;
+      letter-spacing: 0.2rem;
+      padding-right: 2rem;
+      color: blue;
+    }
+
+    #one {
+      font-family: cursive;
+      font-size: 1.5rem;
+      letter-spacing: 0.4rem;
+      padding-right: 20rem;
+    }
+
+    #two {
+      font-family: cursive;
+      font-size: 1.5rem;
+      letter-spacing: 0.4rem;
+      padding-right: 18rem;
+    }
+
+    #three {
+      font-family: cursive;
+      font-size: 1.5rem;
+      letter-spacing: 0.4rem;
+      padding-right: 10rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 10px solid blue;
+    }
+  </style>
+</body>
+
+</html>

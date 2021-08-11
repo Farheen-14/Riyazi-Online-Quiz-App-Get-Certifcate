@@ -1,41 +1,82 @@
 from django.db import models
+from django.http import request
 from django.http.response import HttpResponse 
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
-from .models import registraion,exam
+from .models import contact_me, registraion,exam
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import re 
 import razorpay
 #below adding for email sending
 from django.conf import settings
 from django.core.mail import send_mail
+import pdfkit
+
+# below for generating pdf 
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
+
 
 
 # Create your views here.
+     
+def home(request):
+    return render(request,'home.html')
 
 def base(request):
     return render(request,'base.html')
 
-def home(request):
-    return render(request,'home.html')
 def about(request):
     return render(request,'about.html')
 
-def test(request):
-    datas = exam.objects.all()
-    # user_list = User.objects.all()
-    page = request.GET.get('page', 1)
 
-    paginator = Paginator(datas, 1)
-    try:
-        users = paginator.page(page)
-    except PageNotAnInteger:
-        users = paginator.page(1)
-    except EmptyPage:
-        users = paginator.page(paginator.num_pages)
-    return render(request, 'test.html', { 'message': users })
+def certificate(request):
+    template_path = 'certificate.html'
+    details = registraion.objects.filter(user=request.user).last()
+    context = {
+        'data':details
+    }
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    # if download then below code use
+    # response['Content-Disposition'] = 'attachment; filename="Riyazi-Quiz_Certificate.pdf"'
+    # if display then  below code used
+    response['Content-Disposition'] = 'filename="Riyazi-Quiz_Certificate.pdf"'
+    # find the template and render it.
+    template = get_template(template_path)
+    html = template.render(context)
 
+    # creating a pdf
+    pisa_status = pisa.CreatePDF(
+       html, dest=response)
+    # if error then show some funy view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+def footer1(request):
+    enquiry_mail = contact_me.objects.all()
+    if request.method == 'POST': 
+        enqmail = request.POST['user_mail']
+        enqmsg = request.POST['user_message']
+        enquiry = contact_me(user_mail=enqmail,user_message=enqmsg)
+        enquiry.save()
+        print("Your enquiry is submitted")
+        # email sending
+        subject = 'User Enquiry From Riyazi-Quiz'
+        message = f'Hi, Riyazi-Quiz \n{enquiry.user_message}, \nThank & Regards \n{enquiry.user_mail}'
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [enquiry.user_mail, ]
+        send_mail( subject, message, email_from, recipient_list)
+        print("Your are Registered and Email Send")
+        # return render(request,'instruction.html')
+    return render(request,'footer1.html')
+    # return render(request,'about.html')
 
 
 
@@ -75,20 +116,15 @@ def question(request):
 def payment(request):
     if request.method == 'POST':
         client = razorpay.Client(auth=("rzp_test_k4dKLS5hNZx8t0", "D28crmRPGKxDY4HiFRFlU3zI"))
-        return render(request,'instruction.html')
-
-        # data ={
-        # "order_amount" : "10000",
-        # "order_currency" : 'INR'
-        # }
-        # order= client.order.create(data=data)
-        # print(order)
-        
-        # order_receipt = 'order_rcptid_11'
-        # notes = {'Shipping address': 'Bommanahalli, Bangalore'}   # OPTIONAL
+        return render(request,'register.html')
     return render(request,'payment.html')
+
 def instruction(request):
-    return render(request,'instruction.html') #k old code correc
+    # obj = registraion.objects.get(user=request.user) only one data will receive
+    obj = registraion.objects.filter(user=request.user).last() #last user login will shown
+    # print(obj)
+    # print(obj.First_name)
+    return render(request,'instruction.html',{'data':obj}) 
 
 
 def register(request):
@@ -111,24 +147,24 @@ def register(request):
                 print("Image Available")
             else:
                 print("Not Available")
-            regs = registraion(Email=emlid,Mobile=numbr,First_name=fname,Last_name=lname,Address1=add1,Address2=add2,City=city,State=state,Pincode=pin,picture=image)
+            regs = registraion(user=request.user,Email=emlid,Mobile=numbr,First_name=fname,Last_name=lname,Address1=add1,Address2=add2,City=city,State=state,Pincode=pin,picture=image)
             regs.save()
-            # the below code for email sent
-            # subject = 'Welcome to Riyazi-Quiz'
-            # message = f'Hi {regs.First_name}, thank you for registering in Riyazi-Quiz.'
-            # email_from = settings.EMAIL_HOST_USER
-            # recipient_list = [regs.Email, ]
-            # send_mail( subject, message, email_from, recipient_list)
-
+            print("Your form is submitted")
+             # the below code for email sending
+            subject = 'Welcome to Riyazi-Quiz'
+            message = f'Hi {regs.First_name}, \nThank you for registering in Riyazi-Quiz.\nNow, You are eligiable for online quiz.'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [regs.Email, ]
+            send_mail( subject, message, email_from, recipient_list)
             print("Your are Registered and Email Send")
-            return render(request,'payment.html')
+            return render(request,'instruction.html')
         else:
             messages.warning(request,'Invalid Email_Id & Mobile Number, Please enter correct input')
             return redirect('register')      
     return render(request,'register.html') 
 
-def javascript(request):
-    return render(request,'javascript.html')
+def congrats(request):
+    return render(request,'congrats.html')
 
 def signup(request):
     if request.method == 'POST':        
@@ -165,14 +201,13 @@ def login(request):
             auth.login(request,user)
             # messages.info(request,"Welcome to home page!!!")
             return redirect('about')
-            # return redirect('home')
         else:
             messages.warning(request,"Invalid Username or password! Please try again.")
             return redirect('login')
     else:
         return render(request,'login.html')
 
-def logout(request):
+def logout(request): 
     auth.logout(request)
-    # messages.success(request,'Please LogIn Again!!!')
-    return redirect('home')
+    messages.success(request,'Successfully logout..you want login again?')
+    return redirect('login')

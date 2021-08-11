@@ -11,28 +11,26 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
 
 <body>
- <div class="backgrnd">
-      <section>
+  <div class="backgrnd">
+    <section>
       <div class="container-fluid p-0">
-          <!-- navbar for without Sign-In user  -->
-<!-- before login  -->
-  <div class="navbar">      
-    <a class="navbar-brand" href="/home" id="logo"><b><span>R</span>iyazi<sup><span>Q</span>uiz</sup></b></a>
-    <ul class="items">
-      <li class="item"><a href="/home">Home</a> </li>
-      <li class="item"><a href="/about">About</a></li>
-    </ul>
-  </div>
- <!-- before login ending -->
- 
-        <!-- <img src="{% static 'img/music.jpg' %}" alt="color" class="backgrnd"> -->
+        <!-- before login  -->
+        <div class="navbar">
+          <a class="navbar-brand" href="/home" id="logo"><b><span>R</span>iyazi<sup><span>Q</span>uiz</sup></b></a>
+          <ul class="items">
+            <li class="item active"><a href="/home">Home</a> </li>
+            <li class="item"><a href="/about">About</a></li>
+          </ul>
+        </div>
+        <!-- before login ending -->
+
         <div class="right">
           <video src="{% static 'img/particles.mp4' %}" muted="" autoplay=""></video>
           <h1><span>W</span>elcome <span>To</span> My <span>Kin</span>gdom</h1>
@@ -51,70 +49,79 @@
       padding: 0%;
       margin: 0%;
     }
-    ::-webkit-scrollbar{
+
+    ::-webkit-scrollbar {
       display: none;
     }
-.btn.btn-danger{
-  border-radius: 20px;
-}
+
+    .btn.btn-danger {
+      border-radius: 20px;
+    }
+
     .backgrnd {
-      background-image: url("{% static 'img/music.jpg' %}" );
+      background-image: url("{% static 'img/music.jpg' %}");
       background-size: cover;
       background-position: center fixed;
       height: 100vh;
     }
 
 
-/*navbar for without signin user before login*/
-  
-   
-#logo{
-  color: white;
-  font-size: 2rem;
-  margin-left: 1%;
-  font-family: 'Dancing Script', cursive;
+    /*navbar for without signin user before login*/
 
-}
-span{
-    color: crimson;
-}
-  .navbar{
+
+    #logo {
+      color: white;
+      font-size: 2rem;
+      margin-left: 1%;
+      font-family: 'Dancing Script', cursive;
+
+    }
+
+    span {
+      color: crimson;
+    }
+
+    .navbar {
       padding-top: 0.7rem;
-             }
-      
+    }
+
     .items {
       list-style-type: none;
       width: 18%;
       margin-left: auto;
-      padding: 0px ;
+      padding: 0px;
       height: 0px;
+      color: white;
       background-color: transparent;
     }
 
-
     .item {
       display: inline;
-      letter-spacing: 0.3rem;
+      letter-spacing: 0.2rem;
       padding: 4%;
       margin: 3%;
-      font-size: 1.2rem;    
+      font-size: 1rem;
       font-family: 'Dancing Script', cursive;
-      border-radius: 20px;
     }
-    .item:hover{
+
+    .item:hover {
       background-color: white;
       color: black;
+      border-radius: 20px;
     }
-     
 
-    .header{
-      background-color:transparent;
+
+    .header {
+      background-color: transparent;
 
     }
-    
+
+    .active {
+      background-color: white;
+      border-radius: 20px;
+    }
 
 
-    
     /*body section*/
     img {
       height: 100%;
@@ -135,7 +142,7 @@ span{
 
     .btnn {
       position: absolute;
-      top: 55%;
+      top: 54%;
       width: 100%;
       text-align: center;
       margin: 1%;
@@ -181,7 +188,7 @@ span{
 
     }
 
-  
+
 
     @keyframes animate {
       0% {
@@ -192,10 +199,110 @@ span{
         left: 0%
       }
     }
+    @media screen and (max-width: 1327px) {
+      .item {
+        font-size: 0.9rem;
+      }
+      .right h1 {
+        margin: 16px 0px 0px;
+        font-size: 2.9rem;       
+      }
+      .btnn {
+        top: 52%;
+       }
+      .btn.btn-danger{
+        font-size: 0.9rem;
+      }
+      #logo {
+        font-size: 2rem;
+      }
+    }
+    @media screen and (max-width: 1000px) {
+      .items {
+        width: 22%;        
+      }
+      .item {
+        font-size: 0.9rem;
+      }
+      .right h1 {
+        margin: 16px 0px 0px;
+        font-size: 2.8rem;
+      }
+      .btnn {
+        top: 52%;
+       }
+      .btn.btn-danger{
+        font-size: 0.9rem;
+      }
+      #logo {
+        font-size: 2rem;
+      }
+    }
 
+    @media screen and (max-width: 750px) {
+      .items {
+        width: 25%;      
+      }
+      .item {
+        font-size: 0.8rem;
+      }
+      .right h1 {
+        margin: 15px 0px 0px;
+        font-size: 2.3rem;
+      }
+      .btnn {
+        top: 52%;
+       }
+      .btn.btn-danger{
+        font-size: 0.8rem;
+      }
+      #logo {
+        font-size: 1.8rem;
+      }
+    }
+    @media screen and (max-width: 550px) {
+      .items {
+        width: 32%;      
+      }
+      .item {
+        font-size: 0.7rem;
+      }
+      .right h1 {
+        margin: 17px 0px ;
+        font-size: 2rem;
+      }
+      .btnn {
+        top: 50%;
+       }
+      .btn.btn-danger{
+        font-size: 0.7rem;
+      }
+      #logo {
+        font-size: 1.8rem;
+      }
+    }
+    @media screen and (max-width: 400px) {
+      .items {
+        width: 40%;      
+      }
+      .item {
+        font-size: 0.6rem;
+      }
+      .right h1 {
+        margin: 10px 0px ;
+        font-size: 1.2rem;
+      }
+      .btnn {
+        top: 50%;
+       }
+      .btn.btn-danger{
+        font-size: 0.7rem;
+      }
+      #logo {
+        font-size: 1.8rem;
+      }
+    }
   </style>
-
-
 </body>
 
 </html>

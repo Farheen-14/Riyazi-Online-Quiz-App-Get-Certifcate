@@ -1,74 +1,190 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <title>Quiz-Zone</title>
 </head>
+
 <body>
-<div class="giff">
-<h3>You payment is under process, please press Okay button for form submittion</h3>
-<button type="button" class="btn btn-outline-warning">Okay  </button><br><br>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <img src="{% static 'img/thank.gif' %}" frameborder="0" width="10%" height="10%"><br><br>
+    <script>
+    window.onload = function () {
+        alert("You have successfully registered and email sended to your Email_Id")
+    }
+    </script>
 
-{% for e in client %}
-     <h3>Now!!! {{e.First_name}},You Are Eligiable For Quiz Competition </h3><br>
-{% endfor %}
-</div>
+    <!-- {% for e in client %}
+    <h3>Now!!! {{e.First_name}},You Are Eligiable For Quiz Competition </h3><br>
+    {% endfor %} -->
 
 
+    <div id="thanks">
+        <img src="{% static 'img/thank.gif' %}" frameborder="0" width="10%" height="10%" class="imge"><br><br>
+        {% if user.is_authenticated %}
+     <h5 class="usern"><b><u> User : {{data.First_name}}</u></b></h5>
+     {% endif %}
+    </div>
+    <div class="rules">
+        <h5 id="hid"><u>Instructions (Read-Carefully)</u></h5><br><br>
+        <ul>
+            <li>Round : One round only.</li>
+            <li>The number of questions asked will be 10 and must be attempted within a duration of 1.4 min.</li>
+            <li>Time : 10sec for each question.</li>
+            <li>The questions asked in the quiz will be about the basic of Python.</li>
+            <li>There is no negative marking for any incorrect questions.</li>
+            <li>Format MCQ.</li>
+            <li>Individual Participation.</li>
+            <li>Do not hit back button.</li>
+            <li>After quiz, you will get certificate.</li>
+        </ul>
+    </div><br>
+    <div class="buttn">
+        <a href="{% url 'quiz' %}" id="btnn"><button type="button" class="btn btn-outline-warning">Let's
+                Play</button></a>
+    </div>
 
-<div class="rules">
-    <h5><u>Instructions</u></h5><br><br>
+    <div class="backbtn">
+      <a href="{% url 'about' %}"><button type="button" class="btn btn-outline-warning">Back-to-Home</button></a>
+    </div>
+{% include "footer1.html" %} 
 
-    <ul>
-        <li>Round : One round only</li>
-        <li>The number of questions asked will be 10 and must be attempted within a duration of 1.5 min</li>
-        <li>Time : 15sec for each question.</li>
-        <li>The questions asked in the quiz will be about the GK.</li>
-        <li>There is no negative marking for any incorrect questions.</li>
-        <li>There is no negative marking for any incorrect questions.</li>
-        <li>Format MCQ</li>
-        <li>Individual Participation</li>
-</ul>  
-</div><br>
-<div class="buttn">
-<a href="{% url 'quiz' %}" id="btnn"><button type="button" class="btn btn-outline-warning">Let's Play</button></a>
-</div>
-  
-<style>
-::-webkit-scrollbar {
-display: none;
-}  
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    .backbtn {
+      text-align: center;
+      margin-top: 3%;
+      margin-bottom: 4%;
+    }
+        .giff {
+            text-align: center;
+            color: white;
+            margin-top: 20%;
+        }
 
-.giff{
-    text-align: center;
-    color: white;
-}
-body{
- background-color: black;
-}  
-.rules{
-   color: white;
-   background-image: url("{% static 'img/music.jpg' %}");
-   background-size: cover;
-   background-position: right;
-   font-family: 'Dancing Script', cursive;
-   padding: 1% 30%;
-}
+        body {
+            background-color: black;
+        }
 
-.buttn{
-    text-align: center;
-}
-.btn.btn-outline-warning{
-    border-radius: 20px;
-}
-</style>
+        .rules {
+            color: white;
+            background-image: url("{% static 'img/music.jpg' %}");
+            background-size: cover;
+            background-position: right;
+            font-family: 'Dancing Script', cursive;
+            padding: 1% 30%;
+        }
+
+        .buttn {
+            text-align: center;
+        }
+
+        .btn.btn-outline-warning {
+            border-radius: 20px;
+        }
+
+        #thanks {
+            text-align: center;
+            border-radius: 20px;
+        }
+        .usern{
+            background-color: yellow;
+            border-radius: 20px;
+            margin-bottom: 2%;
+            margin-left: 40%;
+            margin-right: 40%;
+            padding: 0.5%;        
+        }
+
+        @media screen and (max-width: 900px) {
+            .usern{
+             font-size: 1rem;       
+            }  
+            .btn.btn-outline-warning{
+                font-size: 0.8rem;
+            }
+            .imge{
+                width: 12%;
+                height: 12%;
+            }
+            .rules {
+                padding: 1% 20%;
+                font-size: 0.8rem;
+            }
+            #hid{
+                font-size: 1.4rem;
+                padding-top: 5%;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            .usern{
+             font-size: 0.7rem;       
+            }  
+            .btn.btn-outline-warning{
+                font-size: 0.6rem;
+            }
+            .imge{
+                height: 20%;
+            }
+            .rules {
+                padding: 1% 18%;
+                font-size: 0.7rem;
+            }
+            #hid{
+                font-size: 1.1rem;
+                padding-top: 5%;
+            }
+        }
+        @media screen and (max-width: 550px) {
+            .usern{
+             font-size: 0.6rem;       
+            }  
+            .btn.btn-outline-warning{
+                font-size: 0.6rem;
+            }
+            .imge{
+                width: 12%;
+                height: 12%;
+            }
+            .rules {
+                padding: 1% 16%;
+                font-size: 0.6rem;
+            }
+            #hid{
+                font-size: 1rem;
+                padding-top: 5%;
+            }
+        }
+        @media screen and (max-width: 410px) {
+            .usern{
+             font-size: 0.4rem;       
+            }  
+            .btn.btn-outline-warning{
+                font-size: 0.5rem;
+            }
+            .imge{
+                width: 14%;
+                height: 14%;
+            }
+            .rules {
+                padding: 1% 13%;
+                font-size: 0.5rem;
+            }
+            #hid{
+                font-size: 0.7rem;
+                padding-top: 5%;
+            }
+        }
+    </style>
 </body>
+
 </html>

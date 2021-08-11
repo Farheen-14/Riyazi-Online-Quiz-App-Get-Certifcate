@@ -38,7 +38,7 @@
                 <h2 class="head">User Sign-Up</h2>
                 {% if messages %}
                 {% for msg in messages %}
-                <code style="background-color: yellow;">{{msg}}</code>
+                <code class="error" style="background-color: yellow;">{{msg}}</code>
                 {% endfor %}
                 {% endif %}
 
@@ -75,8 +75,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary mb-3">Submit
                 </button><br>
-                <label for="title" class="form-label">Already have an account?<a href="{% url 'login' %}"> Sign
-                        In</a></label>
+                <label for="title" class="form-label">Already have an account?<a href="{% url 'login' %}"> SignIn</a></label>
             </div>
 
         </form>
@@ -97,6 +96,7 @@
     }
 .head{
     margin-top: 3%;
+    margin-bottom: 5%;
 }
     .form {
             margin-left: 25%;
@@ -122,6 +122,85 @@
             margin-bottom: 3%;
             font-family: 'Dancing Script', cursive;
         }
+        .error{
+            padding: 1.4%;
+    
+        }
+        @media screen and (max-width: 1050px) {
+            .error{
+                font-size: 0.9rem;
+                margin-top: 3%;
+                padding: 1.1%;
+        
+            }
+        }
+    @media screen and (max-width: 900px) {
+    .form-label,.form-check-label,.btn.btn-primary, .btn.btn-outline-warning, .form-control,.form-text{
+        font-size: 0.8rem;
+    }
+    .head{
+        font-size: 1.6rem;
+        padding: 3%;
+    
+    }
+    .form {
+        margin-left: 20%;
+        margin-right: 20%;
+        margin-top: 5%;
+        margin-bottom: 2%;
+    }
+    .error{
+        font-size: 0.8rem;
+        padding: 1.3%;
+
+    }
+    }
+    @media screen and (max-width: 600px) {
+        .form-label,.form-check-label,.btn.btn-primary, .btn.btn-outline-warning, .form-control,.form-text{
+            font-size: 0.7rem;
+        }
+        .head{
+            font-size: 1.4rem;
+            padding: 3%;
+        }
+        .form {
+            margin-left: 17%;
+            margin-right: 17%;
+            margin-top: 5%;
+            margin-bottom: 2%;
+        }
+        .error{
+            font-size: 0.6rem;
+            padding: 1%;
+
+        }
+        }
+        @media screen and (max-width: 480px) {
+            .error{
+                font-size: 0.56rem;
+                padding: 1.2%;
+            }   
+        }
+        @media screen and (max-width: 350px) {
+            .form-label,.form-check-label,.btn.btn-primary, .btn.btn-outline-warning, .form-control,.form-text{
+                font-size: 0.6rem;
+            }
+            .head{
+                font-size: 1rem;
+                padding: 3%;
+            }
+            .form {
+                margin-left: 10%;
+                margin-right: 10%;
+                margin-top: 7%;
+                margin-bottom: 2%;
+            }
+            .error{
+                font-size: 0.5rem;
+                padding: 2%;
+
+            }
+            }
     </style>
 </body>
 

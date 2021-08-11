@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 categoty_choice=(
     ('Andhra-Pradesh','Andhra-Pradesh'),
@@ -32,6 +32,7 @@ categoty_choice=(
     ('West-Bengal','West-Bengal'),
 )
 class registraion(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)   
     First_name = models.CharField(max_length=50)
     Last_name = models.CharField(max_length=50)
     Email = models.EmailField()
@@ -51,3 +52,7 @@ class exam(models.Model):
     option3 = models.CharField(max_length=100)
     option4 = models.CharField(max_length=100)
     answer = models.CharField(max_length=100)    
+
+class contact_me(models.Model):
+    user_mail = models.EmailField()
+    user_message= models.CharField(max_length=300)

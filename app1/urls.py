@@ -16,12 +16,12 @@ urlpatterns = [
     path('instruction/',views.instruction,name='instruction'),
     path('quiz/',views.quiz,name='quiz'),
     path('question/',views.question,name='question'),
-    path('test/',views.test,name='test')
-
+    path('congrats/',views.congrats,name='congrats'),
+    path('footer1/',views.footer1,name='footer1'),
+    path('pdf/',views.certificate,name='certificate')
 
 ] 
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# if we want these can also use 
+# for media file saved
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

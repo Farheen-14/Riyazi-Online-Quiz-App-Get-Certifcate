@@ -26,8 +26,8 @@ SECRET_KEY = 'wlbkcf(^yeej8ny2nqvr-%!_fb^c1m9&uft#2js2dfwsq17&s1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '*'
-    # 'riyazi-quiz.herokuapp.com'
+ALLOWED_HOSTS = [
+    'riyazi-quiz.herokuapp.com','127.0.0.1:8000'
 ]
 
 

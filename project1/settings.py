@@ -27,7 +27,7 @@ SECRET_KEY = 'wlbkcf(^yeej8ny2nqvr-%!_fb^c1m9&uft#2js2dfwsq17&s1'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'riyazi-quiz.herokuapp.com'
+    # 'riyazi-quiz.herokuapp.com'
 ]
 
 

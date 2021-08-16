@@ -75,8 +75,8 @@ def footer1(request):
         send_mail( subject, message, email_from, recipient_list)
         print("Your are Registered and Email Send")
         # return render(request,'instruction.html')
-    return render(request,'footer1.html')
-    # return render(request,'about.html')
+    # return render(request,'footer1.html')
+    return render(request,'about.html')
 
 
 

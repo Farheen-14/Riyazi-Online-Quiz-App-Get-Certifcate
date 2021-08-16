@@ -56,3 +56,4 @@ class exam(models.Model):
 class contact_me(models.Model):
     user_mail = models.EmailField()
     user_message= models.CharField(max_length=300)
+    user_name = models.CharField(max_length=300, null=True)

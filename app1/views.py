@@ -63,13 +63,14 @@ def footer1(request):
     enquiry_mail = contact_me.objects.all()
     if request.method == 'POST': 
         enqmail = request.POST['user_mail']
+        enqname = request.POST['user_name']
         enqmsg = request.POST['user_message']
-        enquiry = contact_me(user_mail=enqmail,user_message=enqmsg)
+        enquiry = contact_me(user_mail=enqmail,user_message=enqmsg,user_name=enqname)
         enquiry.save()
         print("Your enquiry is submitted")
         # email sending
         subject = 'User Enquiry From Riyazi-Quiz'
-        message = f'Hi, Riyazi-Quiz \n{enquiry.user_message}, \nThank & Regards \n{enquiry.user_mail}'
+        message = f'Hi, Riyazi-Quiz \n{enquiry.user_message}, \nThank & Regards \n{enquiry.user_name}'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [enquiry.user_mail, ]
         send_mail( subject, message, email_from, recipient_list)
